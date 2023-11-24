@@ -53,12 +53,13 @@ add_action( 'wp_ajax_nopriv_archive_pagination', 'tfsb_archive_pagination' );
 add_action( 'wp_ajax_archive_pagination', 'tfsb_archive_pagination' );
 function tfsb_archive_pagination() {
 	check_ajax_referer( 'tfsb_archive_nonce', 'security' );
-	$keyword = ( isset( $_GET['keyword'] ) ) ? $_GET['keyword'] : 1;
-	$paged   = isset( $_POST['paged'] ) ? $_POST['paged'] : 1;
-	$args    = array(
+	$keyword        = ( isset( $_GET['keyword'] ) ) ? $_GET['keyword'] : 1;
+	$paged          = isset( $_POST['paged'] ) ? $_POST['paged'] : 1;
+	$posts_per_page = get_option( 'posts_per_page' );
+	$args           = array(
 		'post_type'      => 'tf-service-booking',
 		'post_status'    => 'publish',
-		'posts_per_page' => 5,
+		'posts_per_page' => $posts_per_page,
 		'paged'          => $paged,
 		's'              => $keyword,
 	);

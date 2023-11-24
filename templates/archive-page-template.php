@@ -14,7 +14,7 @@ get_header();
 if ( have_posts() ) :
 
 	echo '<div class="load-more-posts">';
-	$posts_per_page = 5;
+	$posts_per_page = get_option( 'posts_per_page' );
 	$query_var      = ( isset( $_GET['keyword'] ) ) ? $_GET['keyword'] : '';
 	$paged          = ( get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1 );
 	$query          = array(
